@@ -232,7 +232,4 @@ class CountMinSketch:
         return sketch
 
     def __repr__(self) -> str:
-        return (
-            f"CountMinSketch(epsilon={self._epsilon}, delta={self._delta}, "
-            f"width={self._width}, depth={self._depth})"
-        )
+        return f"CountMinSketch(epsilon={self._epsilon}, delta={self._delta}, width={self._width}, depth={self._depth})"

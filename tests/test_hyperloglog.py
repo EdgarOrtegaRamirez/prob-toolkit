@@ -131,5 +131,3 @@ class TestHyperLogLog:
         error = abs(estimate - true_count) / true_count
 
         assert error < 0.1, f"Streaming error {error:.2%} too high"
-
-

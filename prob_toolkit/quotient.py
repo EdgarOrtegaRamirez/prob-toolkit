@@ -144,7 +144,7 @@ class QuotientFilter:
         # Insert at the empty slot
         self._slots[empty_slot] = remainder
         self._occupied[empty_slot] = True
-        self._shifted[empty_slot] = (empty_slot != quotient)
+        self._shifted[empty_slot] = empty_slot != quotient
         self._continuation[empty_slot] = False
         self._deleted[empty_slot] = False
 
@@ -162,11 +162,7 @@ class QuotientFilter:
 
         # Scan forward from the home bucket
         while scan_count < self._num_buckets:
-            if (
-                self._occupied[pos]
-                and not self._deleted[pos]
-                and self._slots[pos] == remainder
-            ):
+            if self._occupied[pos] and not self._deleted[pos] and self._slots[pos] == remainder:
                 return True
             # If we hit an empty, non-shifted, non-deleted slot, we've left the cluster
             if not self._occupied[pos] and not self._shifted[pos] and not self._deleted[pos]:
@@ -198,11 +194,7 @@ class QuotientFilter:
         scan_count = 0
 
         while scan_count < self._num_buckets:
-            if (
-                self._occupied[pos]
-                and not self._deleted[pos]
-                and self._slots[pos] == remainder
-            ):
+            if self._occupied[pos] and not self._deleted[pos] and self._slots[pos] == remainder:
                 # Found it - mark as deleted
                 self._deleted[pos] = True
                 self._occupied[pos] = False

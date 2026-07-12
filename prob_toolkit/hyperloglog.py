@@ -148,7 +148,7 @@ class HyperLogLog:
 
         # Large range correction (near overflow of 64-bit)
         if raw_estimate > (1 << 64) / 30.0:
-            return -(2 ** 64) * math.log(1 - raw_estimate / (2 ** 64))
+            return -(2**64) * math.log(1 - raw_estimate / (2**64))
 
         return raw_estimate
 
@@ -217,7 +217,5 @@ class HyperLogLog:
 
     def __repr__(self) -> str:
         return (
-            f"HyperLogLog(precision={self._precision}, "
-            f"num_buckets={self._num_buckets}, "
-            f"estimate={self.estimate():.0f})"
+            f"HyperLogLog(precision={self._precision}, num_buckets={self._num_buckets}, estimate={self.estimate():.0f})"
         )

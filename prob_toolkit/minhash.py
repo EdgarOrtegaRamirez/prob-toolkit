@@ -131,11 +131,7 @@ class MinHash:
         if self._num_hashes != other._num_hashes:
             raise ValueError("MinHash objects must have the same number of hashes")
 
-        matches = sum(
-            1
-            for s, o in zip(self._signature, other._signature, strict=True)
-            if s == o
-        )
+        matches = sum(1 for s, o in zip(self._signature, other._signature, strict=True) if s == o)
         return matches / self._num_hashes
 
     def distance(self, other: "MinHash") -> float:
@@ -259,9 +255,7 @@ class WeightedMinHash:
 
     def jaccard_similarity(self, other: "WeightedMinHash") -> float:
         """Estimate weighted Jaccard similarity."""
-        matches = sum(
-            1 for s, o in zip(self._signature, other._signature, strict=True) if s == o
-        )
+        matches = sum(1 for s, o in zip(self._signature, other._signature, strict=True) if s == o)
         return matches / self._num_hashes
 
     @property

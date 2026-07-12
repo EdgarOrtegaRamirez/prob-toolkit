@@ -44,9 +44,7 @@ class TestMinHash:
         estimated = mh1.jaccard_similarity(mh2)
 
         # Should be reasonably close
-        assert abs(estimated - true_jaccard) < 0.15, (
-            f"Estimated {estimated:.3f} too far from true {true_jaccard:.3f}"
-        )
+        assert abs(estimated - true_jaccard) < 0.15, f"Estimated {estimated:.3f} too far from true {true_jaccard:.3f}"
 
     def test_distance(self):
         mh1 = MinHash(num_hashes=128)

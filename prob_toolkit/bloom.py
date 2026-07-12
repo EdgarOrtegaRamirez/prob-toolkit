@@ -62,9 +62,7 @@ class BloomFilter:
         self._bit_array = bytearray((self._bit_size + 7) // 8)
 
         # Double hash for generating multiple hash positions
-        self._double_hash = make_double_hash(
-            murmur3_32, fnv1a_32
-        )
+        self._double_hash = make_double_hash(murmur3_32, fnv1a_32)
 
     @staticmethod
     def _optimal_bit_size(n: int, p: float) -> int:
@@ -212,9 +210,7 @@ class BloomFilter:
         result._seed = self._seed
         result._num_hashes = self._num_hashes
         result._bit_size = self._bit_size
-        result._bit_array = bytearray(
-            a & b for a, b in zip(self._bit_array, other._bit_array, strict=True)
-        )
+        result._bit_array = bytearray(a & b for a, b in zip(self._bit_array, other._bit_array, strict=True))
         result._count = min(self._count, other._count)
         result._double_hash = make_double_hash(murmur3_32, fnv1a_32)
         return result

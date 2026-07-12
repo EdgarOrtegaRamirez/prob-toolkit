@@ -1,6 +1,5 @@
 """Tests for Quotient Filter."""
 
-
 from prob_toolkit.quotient import QuotientFilter
 
 
@@ -84,11 +83,13 @@ class TestQuotientFilter:
 
     def test_invalid_capacity(self):
         import pytest
+
         with pytest.raises(ValueError):
             QuotientFilter(capacity=0)
 
     def test_invalid_fingerprint_bits(self):
         import pytest
+
         with pytest.raises(ValueError):
             QuotientFilter(capacity=100, fingerprint_bits=0)
         with pytest.raises(ValueError):

@@ -188,7 +188,7 @@ def cmd_hll(args: argparse.Namespace) -> None:
         print(f"  Precision: {precision}")
         print(f"  Registers: {hll.num_buckets}")
         print(f"  Est. cardinality: {hll.estimate():.0f}")
-        print(f"  Est. error: {1.04 / (hll.num_buckets ** 0.5):.2%}")
+        print(f"  Est. error: {1.04 / (hll.num_buckets**0.5):.2%}")
 
     elif args.action == "test":
         import random
@@ -312,12 +312,12 @@ def cmd_minhash(args: argparse.Namespace) -> None:
         for i in range(len(sets)):
             for j in range(i + 1, len(sets)):
                 sim = sets[i].jaccard_similarity(sets[j])
-                print(f"  Set {i+1} vs Set {j+1}: Jaccard similarity = {sim:.3f}")
+                print(f"  Set {i + 1} vs Set {j + 1}: Jaccard similarity = {sim:.3f}")
 
     elif args.action == "stats":
         print("MinHash")
         print(f"  Num hashes: {num_hashes}")
-        print(f"  Est. error: {1.0 / (num_hashes ** 0.5):.3f}")
+        print(f"  Est. error: {1.0 / (num_hashes**0.5):.3f}")
 
     elif args.action == "test":
         import random
@@ -332,7 +332,7 @@ def cmd_minhash(args: argparse.Namespace) -> None:
         # Generate two sets with known overlap
         all_items = ["".join(random.choices(string.ascii_lowercase, k=8)) for _ in range(set_size * 2 - overlap)]
         set_a_items = all_items[:set_size]
-        set_b_items = all_items[set_size - overlap:]
+        set_b_items = all_items[set_size - overlap :]
 
         mh_a = MinHash(num_hashes=num_hashes)
         mh_b = MinHash(num_hashes=num_hashes)
@@ -370,6 +370,7 @@ def cmd_benchmark(args: argparse.Namespace) -> None:
 
     # Bloom Filter
     from prob_toolkit.bloom import BloomFilter
+
     bf = BloomFilter(capacity=n, error_rate=0.01)
     start = time.perf_counter()
     for item in items:
@@ -391,6 +392,7 @@ def cmd_benchmark(args: argparse.Namespace) -> None:
 
     # Cuckoo Filter
     from prob_toolkit.cuckoo import CuckooFilter
+
     cf = CuckooFilter(capacity=n, error_rate=0.01)
     start = time.perf_counter()
     added = 0
@@ -414,6 +416,7 @@ def cmd_benchmark(args: argparse.Namespace) -> None:
 
     # HyperLogLog
     from prob_toolkit.hyperloglog import HyperLogLog
+
     hll = HyperLogLog(precision=14)
     start = time.perf_counter()
     for item in items:
@@ -428,6 +431,7 @@ def cmd_benchmark(args: argparse.Namespace) -> None:
 
     # Count-Min Sketch
     from prob_toolkit.count_min_sketch import CountMinSketch
+
     cms = CountMinSketch(epsilon=0.001, delta=0.01)
     start = time.perf_counter()
     for item in items:
@@ -449,6 +453,7 @@ def cmd_benchmark(args: argparse.Namespace) -> None:
 
     # MinHash
     from prob_toolkit.minhash import MinHash
+
     mh = MinHash(num_hashes=128)
     start = time.perf_counter()
     for item in items:
