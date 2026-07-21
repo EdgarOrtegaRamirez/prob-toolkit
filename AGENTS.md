@@ -16,7 +16,7 @@ ProbToolkit is a Python library for probabilistic data structures. All implement
 ## Running Tests
 ```bash
 cd /root/workspace/prob-toolkit
-uv venv && uv pip install -e ".[dev]"
+uv venv && uv pip install --editable ".[dev]"
 uv run pytest -v
 ```
 
